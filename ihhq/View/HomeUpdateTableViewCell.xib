@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeUpdateTableViewCell" rowHeight="-31" id="KGk-i7-Jjw" customClass="HomeUpdateTableViewCell" customModule="ihhq" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="422" height="79"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="422" height="78.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fq9-cf-Qqd">
+                        <rect key="frame" x="0.5" y="0.0" width="422" height="80"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WOr-UY-cr2">
+                                <rect key="frame" x="295" y="0.0" width="126.5" height="71.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivered" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZjS-Ec-GQh">
+                                        <rect key="frame" x="33" y="27.5" width="61" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ZjS-Ec-GQh" firstAttribute="centerY" secondItem="WOr-UY-cr2" secondAttribute="centerY" id="6oJ-CN-Gdz"/>
+                                    <constraint firstItem="ZjS-Ec-GQh" firstAttribute="centerX" secondItem="WOr-UY-cr2" secondAttribute="centerX" id="mrZ-2l-xhf"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="otZ-sm-sUf">
+                                <rect key="frame" x="0.0" y="0.0" width="295.5" height="71.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Casa Desa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ae1-Os-6eQ">
+                                        <rect key="frame" x="20" y="28" width="255.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ae1-Os-6eQ" firstAttribute="centerY" secondItem="otZ-sm-sUf" secondAttribute="centerY" id="FqE-ix-0V3"/>
+                                    <constraint firstItem="ae1-Os-6eQ" firstAttribute="centerX" secondItem="otZ-sm-sUf" secondAttribute="centerX" id="vu8-09-HPt"/>
+                                    <constraint firstItem="ae1-Os-6eQ" firstAttribute="leading" secondItem="otZ-sm-sUf" secondAttribute="leading" constant="20" id="yHM-J4-ai3"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOX-6m-ugQ">
+                                <rect key="frame" x="0.0" y="71" width="422" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="oNx-Gf-AjG"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xBu-vs-2A2">
+                                <rect key="frame" x="0.0" y="0.0" width="422" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="BlT-Ve-vXX"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="WOr-UY-cr2" firstAttribute="top" secondItem="Fq9-cf-Qqd" secondAttribute="top" id="BFT-Vp-qEr"/>
+                            <constraint firstItem="otZ-sm-sUf" firstAttribute="leading" secondItem="Fq9-cf-Qqd" secondAttribute="leading" id="CF8-KF-eQu"/>
+                            <constraint firstItem="otZ-sm-sUf" firstAttribute="width" secondItem="Fq9-cf-Qqd" secondAttribute="width" multiplier="0.7" id="CS2-KX-LeR"/>
+                            <constraint firstItem="bOX-6m-ugQ" firstAttribute="centerX" secondItem="Fq9-cf-Qqd" secondAttribute="centerX" id="Ekr-lp-t9g"/>
+                            <constraint firstItem="xBu-vs-2A2" firstAttribute="centerX" secondItem="Fq9-cf-Qqd" secondAttribute="centerX" id="HpK-JD-OrF"/>
+                            <constraint firstAttribute="bottom" secondItem="bOX-6m-ugQ" secondAttribute="bottom" constant="8" id="Lk8-tz-3Kx"/>
+                            <constraint firstAttribute="height" constant="80" id="SDR-ZC-Zwf"/>
+                            <constraint firstItem="bOX-6m-ugQ" firstAttribute="width" secondItem="Fq9-cf-Qqd" secondAttribute="width" id="Svm-h1-N2b"/>
+                            <constraint firstAttribute="bottom" secondItem="otZ-sm-sUf" secondAttribute="bottom" constant="8" id="cUo-o1-DdT"/>
+                            <constraint firstItem="otZ-sm-sUf" firstAttribute="top" secondItem="Fq9-cf-Qqd" secondAttribute="top" id="fbw-b7-6Uc"/>
+                            <constraint firstItem="WOr-UY-cr2" firstAttribute="width" secondItem="Fq9-cf-Qqd" secondAttribute="width" multiplier="0.3" id="n9J-re-bq1"/>
+                            <constraint firstAttribute="bottom" secondItem="WOr-UY-cr2" secondAttribute="bottom" constant="8.5" id="oQI-uz-Hhe"/>
+                            <constraint firstAttribute="trailing" secondItem="WOr-UY-cr2" secondAttribute="trailing" constant="0.5" id="p2F-hO-qN0"/>
+                            <constraint firstItem="xBu-vs-2A2" firstAttribute="width" secondItem="Fq9-cf-Qqd" secondAttribute="width" id="rHp-fM-Dqv"/>
+                            <constraint firstItem="xBu-vs-2A2" firstAttribute="top" secondItem="Fq9-cf-Qqd" secondAttribute="top" id="ugw-pr-eFr"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Fq9-cf-Qqd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="I74-j5-3HB"/>
+                    <constraint firstItem="Fq9-cf-Qqd" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="OsQ-Ep-JrP"/>
+                    <constraint firstItem="Fq9-cf-Qqd" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Y5A-Ho-oZs"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lblName" destination="ae1-Os-6eQ" id="ual-mx-rKC"/>
+                <outlet property="lblStatus" destination="ZjS-Ec-GQh" id="PGv-o5-S1Y"/>
+            </connections>
+            <point key="canvasLocation" x="-26" y="-160.5"/>
+        </tableViewCell>
+    </objects>
+</document>

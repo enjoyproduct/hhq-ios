@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </array>
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationTableViewCell" rowHeight="71" id="KGk-i7-Jjw" customClass="NotificationTableViewCell" customModule="ihhq" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="478" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="478" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Support ID : 2342342342" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqa-t4-gk4">
+                        <rect key="frame" x="23" y="16" width="348" height="16.5"/>
+                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20/12/2017" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAF-Pf-OxV">
+                        <rect key="frame" x="379" y="33" width="83" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="83" id="FsE-Jx-IlV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have received a reply" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmA-uh-JnS">
+                        <rect key="frame" x="23" y="37" width="348" height="15.5"/>
+                        <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="13"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="xmA-uh-JnS" firstAttribute="leading" secondItem="oqa-t4-gk4" secondAttribute="leading" id="08N-8P-dCj"/>
+                    <constraint firstItem="oqa-t4-gk4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="6La-V3-x18"/>
+                    <constraint firstItem="xmA-uh-JnS" firstAttribute="width" secondItem="oqa-t4-gk4" secondAttribute="width" id="98u-of-QD9"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="VAF-Pf-OxV" secondAttribute="trailing" constant="8" id="A91-8T-OwR"/>
+                    <constraint firstItem="VAF-Pf-OxV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bRT-fE-aF3"/>
+                    <constraint firstItem="VAF-Pf-OxV" firstAttribute="leading" secondItem="oqa-t4-gk4" secondAttribute="trailing" constant="8" id="ex0-oq-lkf"/>
+                    <constraint firstItem="oqa-t4-gk4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="15" id="orP-tb-3t0"/>
+                    <constraint firstItem="xmA-uh-JnS" firstAttribute="top" secondItem="oqa-t4-gk4" secondAttribute="bottom" constant="4" id="yVn-2Z-4rm"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lblCase" destination="oqa-t4-gk4" id="m2x-zd-Ik4"/>
+                <outlet property="lblMessage" destination="xmA-uh-JnS" id="I41-3q-jJP"/>
+                <outlet property="lblTime" destination="VAF-Pf-OxV" id="OH8-uf-2yi"/>
+            </connections>
+            <point key="canvasLocation" x="104" y="65"/>
+        </tableViewCell>
+    </objects>
+</document>
