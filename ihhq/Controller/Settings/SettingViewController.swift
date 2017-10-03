@@ -27,7 +27,7 @@ class SettingViewController: BaseViewController {
         APIManager.sendRequest(method: .post, urlString: API.ENABLE_NOTIFICATION, params: paramsDict, succeedHandler: { (result) in
             dismissProgressHUD()
             Global.me.is_enable_push = isEnable ? 1 : 0
-            tableView.reloadData()
+            self.tableView.reloadData()
         }, failedHandler: {(error) in
             dismissProgressHUD()
             print(error)

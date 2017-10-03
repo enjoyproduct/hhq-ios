@@ -37,7 +37,7 @@ class API: NSObject {
     static let SUBMIT_QR_CODE = BASE_API_URL + "dispatches/scan"
     static let UPDATE_PROFILE = BASE_API_URL + "users/me/setting"
     static let ENABLE_NOTIFICATION = BASE_API_URL + "enable_notification"
-    static let UPLOAD_NEW_DOCUMENT = BASE_API_URL + "files/"
+    static let UPLOAD_NEW_DOCUMENT = BASE_API_URL + "files/%d/documents"
     static let CHANGE_PASSWORD = BASE_API_URL + "users/me/change_password"
     static let CREATE_BILL = BASE_API_URL + "billplzpayment"
     static let CHECK_BILLING = BASE_API_URL + "requestbillplz"

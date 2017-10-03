@@ -108,7 +108,7 @@ class HomeContainerViewController: UIViewController, CarbonTabSwipeNavigationDel
         
     }
     func carbonTabSwipeNavigation(_ carbonTabSwipeNavigation: CarbonTabSwipeNavigation, didMoveAt index: UInt) {
-        if index == 4 { //correspondence
+        if index == 4 && fileModel?.assigned_role != Constant.arrUserRoles[6]{ //correspondence
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newSupportRequest))
         } else {
             navigationItem.rightBarButtonItem = nil

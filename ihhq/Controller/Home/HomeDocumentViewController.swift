@@ -33,7 +33,7 @@ class HomeDocumentViewController: UIViewController{
         self.tableView.register(UINib(nibName: "HomeDocumentTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeDocumentTableViewCell")
         self.btnSortBy.makeRoundCorner(cornerRadius: 4)
         self.btnUpload.makeRoundCorner(cornerRadius: 4)
-        if Global.me.role == Constant.arrUserRoles[5] {
+        if Global.me.role == Constant.arrUserRoles[5] || fileModel?.assigned_role == Constant.arrUserRoles[6] {
             self.viewUploadBtnContainer.isHidden = true
             self.btnUpload.isEnabled = false
         } else {
@@ -42,6 +42,9 @@ class HomeDocumentViewController: UIViewController{
         }
         makeDropDownSortBy()
         
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
         self.get_document_list()
     }
     func makeDropDownSortBy() {

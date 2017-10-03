@@ -16,7 +16,7 @@ class PaymentModel: NSObject {
     var amount = ""
     var currency = ""
     var remarks: String?
-    var status = ""
+    var status: String?
     var date = ""
     override init() {
         
@@ -30,9 +30,8 @@ class PaymentModel: NSObject {
         self.amount = json["amount"].string!
         self.currency = json["currency"].string!
         self.remarks = json["remarks"].string
-        self.status = json["status"].string!
         self.date = json["created_at"].string!
-        
+        self.status = json["status_detail"].string
         
     }
 

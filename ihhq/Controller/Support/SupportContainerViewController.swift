@@ -25,7 +25,10 @@ class SupportContainerViewController: BaseViewController,CarbonTabSwipeNavigatio
         } else {
             titles = ["Active", "Unassigned"]
         }
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newSupportRequest))
+        if Global.me.role != Constant.arrUserRoles[6] {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newSupportRequest))
+            
+        }
         //
         carbonTabSwiftNavigation = CarbonTabSwipeNavigation(items: titles, delegate: self)
         carbonTabSwiftNavigation?.insert(intoRootViewController: self)

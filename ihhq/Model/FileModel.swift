@@ -43,6 +43,8 @@ class FileModel: NSObject {
     var updated_by = 0
     var closed_by = 0
     var tags = [String]()
+    var assigned_role = ""
+    
     override init() {
         
     }
@@ -76,6 +78,8 @@ class FileModel: NSObject {
         self.closed_by = json["closed_by"].int!
         let tagString = json["tags"].string!
         self.tags = tagString.components(separatedBy: ",")
+        
+        self.assigned_role = json["role"].string!
     }
 }
 

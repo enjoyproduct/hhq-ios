@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import AVFoundation
+import MobileCoreServices
 
-class HomePaymentViewController: UIViewController {
+class HomePaymentViewController: UIViewController, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UIActionSheetDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     var fileModel: FileModel? = nil
@@ -19,6 +21,8 @@ class HomePaymentViewController: UIViewController {
     var isBillCreated = false
     let imagePicker = UIImagePickerController()
     var receiptImage: UIImage? = nil
+    
+    var fileURL: URL? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +66,14 @@ class HomePaymentViewController: UIViewController {
     func pickReceiptImage() {
         let alert = UIAlertController(title: "Upload Receipt", message: "Upload transaction slip from", preferredStyle: .alert)
        
+        alert.addAction(UIAlertAction(title: "Document", style: .default, handler: {  (_) in
+            let importMenu = UIDocumentMenuViewController(documentTypes: [kUTTypePDF as String, kUTTypeContent as String], in: .import)
+            importMenu.delegate = self
+            importMenu.modalPresentationStyle = .formSheet
+            self.present(importMenu, animated: true, completion: nil)
+
+        }))
+
         alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: {  (_) in
             self.imagePicker.allowsEditing = false
             self.imagePicker.sourceType = .photoLibrary
@@ -78,7 +90,26 @@ class HomePaymentViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
 
     }
+    //pick up pdf, doc and xlsx
     
+    // MARK:- UIDocumentPickerDelegate
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        fileURL = url as URL
+    }
+    
+    @available(iOS 8.0, *)
+    // MARK:- UIDocumentMenuDelegate
+    public func documentMenu(_ documentMenu:  UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
+        
+        documentPicker.delegate = self
+        present(documentPicker, animated: true, completion: nil)
+    }
+    
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        
+        print("we cancelled")
+        dismiss(animated: true, completion: nil)
+    }
     func doUploadReceipt() {
         if self.receiptImage == nil {
             return
@@ -94,7 +125,17 @@ class HomePaymentViewController: UIViewController {
             if self.receiptImage != nil  {
                 imageData = UIImageJPEGRepresentation(self.receiptImage!, 0.6)
                 multipartFormData.append(imageData!, withName: "receipt", fileName: "receipt.png", mimeType: "image/png")
-            } else {
+            } else if self.fileURL != nil {
+                var fileData: Data? = nil
+                do {
+                    fileData = try Data(contentsOf: self.fileURL!, options: NSData.ReadingOptions())
+                    
+                } catch {
+                    print(error)
+                }
+                if fileData != nil {
+                    multipartFormData.append(fileData!, withName: "file")
+                }
             }
         }, to: API.UPLOAD_RECEIPT, headers: headers,
            encodingCompletion: { (encodingResult) in

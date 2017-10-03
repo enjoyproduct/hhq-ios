@@ -67,13 +67,13 @@
                   symbolName = "ihhq.ProfileViewController.(doUpdate () -&gt; ()).(closure #2).(closure #1)"
                   moduleName = "ihhq"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Documents/@project/iHHQ/ihhq/ihhq/Controller/Settings/ProfileViewController.swift"
-                  timestampString = "528070529.796326"
+                  urlString = "file:///Users/admin/Documents/@project/42.iHHQ/Code/iOS/ihhq/ihhq/Controller/Settings/ProfileViewController.swift"
+                  timestampString = "528737281.784986"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "85"
                   endingLineNumber = "85"
-                  offsetFromSymbolStart = "1572">
+                  offsetFromSymbolStart = "1788">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -82,13 +82,13 @@
                   symbolName = "ihhq.ProfileViewController.(doUpdate () -&gt; ()).(closure #2).(closure #1).(implicit closure #1)"
                   moduleName = "ihhq"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Documents/@project/iHHQ/ihhq/ihhq/Controller/Settings/ProfileViewController.swift"
-                  timestampString = "528070529.799239"
+                  urlString = "file:///Users/admin/Documents/@project/42.iHHQ/Code/iOS/ihhq/ihhq/Controller/Settings/ProfileViewController.swift"
+                  timestampString = "528737281.789105"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "85"
                   endingLineNumber = "85"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "12">
                </Location>
             </Locations>
          </BreakpointContent>

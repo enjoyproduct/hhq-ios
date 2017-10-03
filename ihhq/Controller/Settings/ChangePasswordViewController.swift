@@ -60,7 +60,7 @@ class ChangePasswordViewController: UIViewController {
         showProgressHUD()
         
         let paramsDict: NSMutableDictionary = [
-            "current_password": getStringFromUserDefault(Constant.PASSWORD),
+            "current_password": tfCurrentPassword.text ?? "",
             "password": tfNewPassword.text ?? "",
             "password_confirmation": tfConfirmPassword.text ?? ""
             ]
