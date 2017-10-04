@@ -60,3 +60,6 @@ func getFileSize(byte: Int) -> String {
 func getUpperCaseFirstLetter(input: String) -> String {
     return input.capitalized
 }
+func removeFirstLetter(origin: String) -> String {
+    return ""
+}

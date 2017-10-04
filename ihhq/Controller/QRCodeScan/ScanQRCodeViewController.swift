@@ -140,11 +140,16 @@ class ScanQRCodeViewController: BaseViewController, QRCodeReaderViewControllerDe
             "qr_code": qrCode]
         APIManager.sendRequest(method: .post, urlString: url, params: paramsDict, succeedHandler: { (result) in
             dismissProgressHUD()
-            showAlert("Submit success", title: Constant.INDECATOR, controller: self)
-            if self.delegate != nil {
-                self.delegate?.scanSuccess(section: self.section, row: self.row)
-                self.navigationController?.popViewController(animated: true)
+            if let err = result["error"].string {
+                showAlert(err, title: Constant.INDECATOR, controller: self)
+            } else {
+                showAlert("Submit success", title: Constant.INDECATOR, controller: self)
+                if self.delegate != nil {
+                    self.delegate?.scanSuccess(section: self.section, row: self.row)
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
+            
         }, failedHandler: {(error) in
             dismissProgressHUD()
             print(error)

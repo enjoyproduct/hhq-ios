@@ -209,7 +209,7 @@ class NewSupportRequestViewController: UIViewController, UITextViewDelegate, Sel
                 multipartFormData.append(self.selectedFileRef.data(using: String.Encoding.utf8)!, withName: "file_ref")
             }
             for attachment in arrAttachments {
-                multipartFormData.append(attachment, withName: "attachments")
+                multipartFormData.append(attachment, withName: "attachments[]")
             }
         }, to: API.CREAT_NEW_TICKET, headers: headers,
            encodingCompletion: { (encodingResult) in

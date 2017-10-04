@@ -385,8 +385,9 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
          */
         if (indexPath.item % 3 == 0) {
             let message = self.messages[indexPath.item]
+            let date = JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: message.date)
             
-            return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: message.date)
+            return date
         }
         
         return nil

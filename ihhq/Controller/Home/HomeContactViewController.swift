@@ -127,7 +127,15 @@ extension HomeContactViewController : UITableViewDataSource {
         let contact = self.arrContacts[indexPath.row]
         cell.lblName.text = contact.name
         cell.lblEmail.text = contact.email
-        cell.lblPhoneNumber.text = "+60 " + contact.mobile
+        var phoneNumber = contact.mobile
+        //check if first text is 0
+        let firstCharacter = contact.mobile[contact.mobile.index(contact.mobile.startIndex, offsetBy: 0)]
+        if  firstCharacter == "0" {
+            phoneNumber = String(contact.mobile.characters.suffix(contact.mobile.characters.count - 1))
+        } else {
+            phoneNumber = contact.mobile
+        }
+        cell.lblPhoneNumber.text = "+60 " + phoneNumber
         cell.lblRole.text = contact.role.capitalized
         cell.delegate = self
         cell.index = indexPath.row

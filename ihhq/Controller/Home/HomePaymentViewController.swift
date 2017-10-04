@@ -95,6 +95,7 @@ class HomePaymentViewController: UIViewController, UIDocumentMenuDelegate, UIDoc
     // MARK:- UIDocumentPickerDelegate
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
         fileURL = url as URL
+        self.doUploadReceipt()
     }
     
     @available(iOS 8.0, *)
@@ -106,12 +107,11 @@ class HomePaymentViewController: UIViewController, UIDocumentMenuDelegate, UIDoc
     }
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-        
         print("we cancelled")
         dismiss(animated: true, completion: nil)
     }
     func doUploadReceipt() {
-        if self.receiptImage == nil {
+        if self.receiptImage == nil && self.fileURL == nil {
             return
         }
         showProgressHUD()
@@ -357,7 +357,8 @@ extension HomePaymentViewController : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if Global.me.role == Constant.arrUserRoles[5] && self.arrPayments[indexPath.row].status == Constant.arrPaymentStatus[0] {
+        if Global.me.role == Constant.arrUserRoles[5] && self.arrPayments[indexPath.row].status == Constant.arrPaymentStatus[0]
+            && self.fileModel?.assigned_role != Constant.arrUserRoles[6] {
             self.selectedIndex = indexPath.row
             self.selectManualOrOnline()
         }

@@ -72,7 +72,7 @@ func timeFormatter(strTime: String, strInputFormat: String = "", strOutputFormat
 }
 func getDateFromString(strTime: String, strInputFormat: String = "") -> Date {
     let dateFormatter = DateFormatter()
-    dateFormatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
+//    dateFormatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
     dateFormatter.dateFormat = strInputFormat != "" ? strInputFormat : "yyyy-MM-dd HH:mm:ss"
     let date = dateFormatter.date(from: strTime)
     return date!

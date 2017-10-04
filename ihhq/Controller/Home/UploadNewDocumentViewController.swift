@@ -102,7 +102,7 @@ class UploadNewDocumentViewController: UIViewController, UIDocumentMenuDelegate,
         }
         let endPoint = String(format: API.UPLOAD_NEW_DOCUMENT, (fileModel?.file_id)!)
         upload(multipartFormData: { (multipartFormData) in
-            multipartFormData.append(self.fileName.data(using: String.Encoding.utf8)!, withName: "name")
+            multipartFormData.append((self.tfFileName.text?.data(using: String.Encoding.utf8)!)!, withName: "name")
             multipartFormData.append((self.fileModel?.file_ref.data(using: String.Encoding.utf8)!)!, withName: "file_ref")
             if fileData != nil {
                 multipartFormData.append(fileData!, withName: "file")

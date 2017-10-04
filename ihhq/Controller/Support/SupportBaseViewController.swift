@@ -16,7 +16,7 @@ class SupportBaseViewController: UIViewController, UISearchBarDelegate {
     
     var arrCorrespondences = [CorrespondenceModel]()
     var url = ""
-    var type = 0//0: response needed, 1: open, 2: close
+    var type = 0//0: unassigned, 1: open, 2: close
     
     var isMenuShow: Bool = false
     var bgMenuView : UIView!
@@ -41,14 +41,14 @@ class SupportBaseViewController: UIViewController, UISearchBarDelegate {
         }
         
         makeDropDownSortBy()
-        if type > 0 {
+        if type != 1 {
             self.url = self.getURL()
             self.arrCorrespondences.removeAll()
             get_correspondence_list()
         }
     }
     override func viewWillAppear(_ animated: Bool) {
-        if type == 0 {
+        if type == 1 {
             self.url = self.getURL()
             self.arrCorrespondences.removeAll()
             get_correspondence_list()

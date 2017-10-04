@@ -79,7 +79,13 @@ class FileModel: NSObject {
         let tagString = json["tags"].string!
         self.tags = tagString.components(separatedBy: ",")
         
-        self.assigned_role = json["role"].string!
+        if let role = json["role"].string {
+            self.assigned_role = role;
+        } else {
+            self.assigned_role = Constant.arrUserRoles[0]
+        }
+        
+        
     }
 }
 

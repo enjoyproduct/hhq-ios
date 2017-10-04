@@ -80,6 +80,7 @@ class ProfileViewController: UIViewController, ProfileTableViewCellDelegate {
                         print("HTTP response status code is", statusCode);
                         
                         if statusCode == 200 {
+                            showAlert("Password updated successfully", title: "", controller: self)
                             if let value = response.result.value {
                                 let json = JSON(value)
                                 Global.me.photo = json["photo"].string ?? ""
