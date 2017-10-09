@@ -329,9 +329,20 @@ extension HomePaymentViewController : HomePaymentTableViewCellDelegate {
         self.downloadFile(index: index)
     }
     func downloadFile(index: Int)  {
+        var fileURL = ""
+        var fileName = ""
+        let payment = self.arrPayments[index]
+        if payment.status == Constant.arrPaymentStatus[0] {
+            fileURL = String(format: API.DOWNLOAD_INVOICE, self.arrPayments[index].payment_id)
+            fileName = String(self.arrPayments[index].payment_id) + "_invoice.pdf"
+        } else if payment.status == Constant.arrPaymentStatus[2] {
+            fileURL = String(format: API.DOWNLOAD_RECEIPT, self.arrPayments[index].payment_id)
+            fileName = String(self.arrPayments[index].payment_id) + "_receipt.pdf"
+        } else {
+            fileURL = String(format: API.DOWNLOAD_RECEIPT, self.arrPayments[index].payment_id)
+            fileName = String(self.arrPayments[index].payment_id) + "_receipt.pdf"
+        }
         
-        let fileURL = String(format: API.DOWNLOAD_INVOICE, self.arrPayments[index].payment_id)
-        let fileName = String(self.arrPayments[index].payment_id) + "_invoice.pdf"
         showProgressHUD()
         APIManager().downloadFile(urlString: fileURL, fileName: fileName, succeedHandler: { (filePath) in
             dismissProgressHUD()
@@ -363,7 +374,6 @@ extension HomePaymentViewController : UITableViewDelegate {
             self.selectManualOrOnline()
         }
         
-        
     }
     
 }
@@ -381,12 +391,14 @@ extension HomePaymentViewController : UITableViewDataSource {
         cell.lblAmount.text = payment.currency + payment.amount
         cell.lblIssueDate.text = timeFormatter(strTime: payment.date)
         cell.lblStatus.text = payment.status
-        if payment.status == Constant.arrPaymentStatus[2] {
-            cell.btnViewInvoice.isHidden = false
-            cell.btnViewInvoice.isEnabled = true
-        } else {
+        if payment.status == Constant.arrPaymentStatus[0] {
+            cell.btnViewInvoice.setText(text: "View Invoice")
+        } else if payment.status == Constant.arrPaymentStatus[2] {
+            cell.btnViewInvoice.setText(text: "View Receipt")
             cell.btnViewInvoice.isHidden = true
             cell.btnViewInvoice.isEnabled = false
+        } else {
+            cell.btnViewInvoice.setText(text: "View Receipt")
         }
         cell.index = indexPath.row
         cell.delegate = self

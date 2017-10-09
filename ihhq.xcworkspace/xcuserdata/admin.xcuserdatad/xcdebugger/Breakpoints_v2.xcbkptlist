@@ -292,54 +292,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ihhq/Controller/Home/UploadNewDocumentViewController.swift"
-            timestampString = "528782792.671077"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "uploadDocument()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ihhq.UploadNewDocumentViewController.uploadDocument () -&gt; ()"
-                  moduleName = "ihhq"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Documents/@project/42.iHHQ/Code/iOS/ihhq/ihhq/Controller/Home/UploadNewDocumentViewController.swift"
-                  timestampString = "528811183.104695"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "104"
-                  endingLineNumber = "104"
-                  offsetFromSymbolStart = "1192">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ihhq.UploadNewDocumentViewController.(uploadDocument () -&gt; ()).(closure #1)"
-                  moduleName = "ihhq"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/admin/Documents/@project/42.iHHQ/Code/iOS/ihhq/ihhq/Controller/Home/UploadNewDocumentViewController.swift"
-                  timestampString = "528811183.107488"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "96"
-                  endingLineNumber = "96"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ihhq/Controller/Home/UploadNewDocumentViewController.swift"
             timestampString = "528783335.338095"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -372,12 +324,12 @@
                   moduleName = "ihhq"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/admin/Documents/@project/42.iHHQ/Code/iOS/ihhq/ihhq/Controller/Home/UploadNewDocumentViewController.swift"
-                  timestampString = "528811183.12029"
+                  timestampString = "529229522.731604"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "116"
                   endingLineNumber = "116"
-                  offsetFromSymbolStart = "120">
+                  offsetFromSymbolStart = "126">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -387,12 +339,12 @@
                   moduleName = "ihhq"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/admin/Documents/@project/42.iHHQ/Code/iOS/ihhq/ihhq/Controller/Home/UploadNewDocumentViewController.swift"
-                  timestampString = "528811183.124443"
+                  timestampString = "529229522.735453"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "117"
                   endingLineNumber = "117"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "19">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -448,7 +400,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ihhq/Controller/Support/NewSupportRequestViewController.swift"
@@ -464,32 +416,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ihhq/Controller/Support/NewSupportRequestViewController.swift"
-            timestampString = "528811411.449937"
+            timestampString = "529220708.120911"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "221"
             endingLineNumber = "221"
             landmarkName = "submit()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ihhq/Controller/Support/SupportBaseViewController.swift"
-            timestampString = "528811498.474688"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

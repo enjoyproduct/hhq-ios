@@ -53,7 +53,7 @@ class FileModel: NSObject {
         self.file_id = json["file_id"].int!
         self.category_id = json["category_id"].int!
         self.sub_category_id = json["sub_category_id"].int!
-        self.type_id = json["type_id"].int!
+//        self.type_id = json["type_id"].int!
         self.file_ref = json["file_ref"].string!
         self.project_name = json["project_name"].string!
         self.subject_matter = json["subject_matter"].string!

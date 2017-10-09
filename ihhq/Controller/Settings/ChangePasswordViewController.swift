@@ -69,6 +69,7 @@ class ChangePasswordViewController: UIViewController {
             if let response = result["result"].string {
                 showAlert(response, title: "Error", controller: self)
             } else {
+                showAlert("Password updated successfully", title: "Error", controller: self)
                 Global.me.password = self.tfNewPassword.text!
                 setObjectToUserDefault(Constant.PASSWORD, object: Global.me.password as AnyObject)
                 //

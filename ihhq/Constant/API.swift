@@ -44,5 +44,6 @@ class API: NSObject {
     static let UPLOAD_RECEIPT = BASE_API_URL + "bankpayment"
     
     static let DOWNLOAD_INVOICE = BASE_API_URL + "files/invoice/%d/download"
+    static let DOWNLOAD_RECEIPT = BASE_API_URL + "files/receipt/%d/download"
 
 }
