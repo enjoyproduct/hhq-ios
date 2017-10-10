@@ -290,6 +290,7 @@ extension HomeDocumentViewController : UITableViewDataSource {
             cell.ivIcon.image = UIImage(named: "excel")
             break
         default:
+            cell.ivIcon.image = UIImage(named: "excel")
             break
         }
         cell.lblName.text = document.name

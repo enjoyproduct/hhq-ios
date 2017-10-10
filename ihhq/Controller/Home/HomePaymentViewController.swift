@@ -126,15 +126,17 @@ class HomePaymentViewController: UIViewController, UIDocumentMenuDelegate, UIDoc
                 imageData = UIImageJPEGRepresentation(self.receiptImage!, 0.6)
                 multipartFormData.append(imageData!, withName: "receipt", fileName: "receipt.png", mimeType: "image/png")
             } else if self.fileURL != nil {
+                let fileName = getFileNameFromURL(url: self.fileURL!)
+                let fileExtension = getFileExtension(fileName: fileName)
                 var fileData: Data? = nil
                 do {
-                    fileData = try Data(contentsOf: self.fileURL!, options: NSData.ReadingOptions())
+                    fileData = try Data(contentsOf: self.fileURL!)
                     
                 } catch {
                     print(error)
                 }
                 if fileData != nil {
-                    multipartFormData.append(fileData!, withName: "file")
+                    multipartFormData.append(fileData!, withName: "receipt", fileName: fileName, mimeType:"application/*")
                 }
             }
         }, to: API.UPLOAD_RECEIPT, headers: headers,
@@ -393,12 +395,16 @@ extension HomePaymentViewController : UITableViewDataSource {
         cell.lblStatus.text = payment.status
         if payment.status == Constant.arrPaymentStatus[0] {
             cell.btnViewInvoice.setText(text: "View Invoice")
+            cell.btnViewInvoice.isHidden = false
+            cell.btnViewInvoice.isEnabled = true
         } else if payment.status == Constant.arrPaymentStatus[2] {
             cell.btnViewInvoice.setText(text: "View Receipt")
             cell.btnViewInvoice.isHidden = true
             cell.btnViewInvoice.isEnabled = false
         } else {
             cell.btnViewInvoice.setText(text: "View Receipt")
+            cell.btnViewInvoice.isHidden = false
+            cell.btnViewInvoice.isEnabled = true
         }
         cell.index = indexPath.row
         cell.delegate = self

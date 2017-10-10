@@ -41,7 +41,7 @@ public struct Constant {
     
     static let cornerRadius5:CGFloat = 5.0
     
-    static let arrDocType = ["pdf", "docx", "xls"]
+    static let arrDocType = ["pdf", "word", "xls"]
     static let arrDocSortBy = ["Date", "Name"]
     static let arrTicketSortBy = ["Date", "Subject"]
     static let arrLogisticStatus = ["Delivered", "Received", "Return"]

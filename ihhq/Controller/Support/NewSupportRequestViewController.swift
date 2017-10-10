@@ -186,20 +186,6 @@ class NewSupportRequestViewController: UIViewController, UITextViewDelegate, Sel
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + Global.me.token
         ]
-        var arrAttachments = [Data]()
-        for fileUrl in self.arrAttachmentURLs {
-            let attachment_url = URL(string: fileUrl)
-            
-            do {
-                let attachmentData = try Data(contentsOf: attachment_url!)
-                arrAttachments.append(attachmentData)
-                // do something with data
-                // if the call fails, the catch block is executed
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        
         
         upload(multipartFormData: { (multipartFormData) in
             multipartFormData.append(String(self.selectedDepartmentID).data(using: String.Encoding.utf8)!, withName: "department_id")
@@ -208,9 +194,21 @@ class NewSupportRequestViewController: UIViewController, UITextViewDelegate, Sel
             if self.selectedFileRef != "" {
                 multipartFormData.append(self.selectedFileRef.data(using: String.Encoding.utf8)!, withName: "file_ref")
             }
-            for attachment in arrAttachments {
-                multipartFormData.append(attachment, withName: "attachments []", mimeType: "application/*")
+            for fileUrl in self.arrAttachmentURLs {
+                let attachment_url = URL(string: fileUrl)
+                
+                do {
+                    let attachmentData = try Data(contentsOf: attachment_url!)
+                    let fileName = getFileNameFromURL(url: attachment_url!)
+                    multipartFormData.append(attachmentData, withName: "attachments[]", fileName: fileName, mimeType: "application/*")
+                    
+                    // do something with data
+                    // if the call fails, the catch block is executed
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
+
         }, to: API.CREAT_NEW_TICKET, headers: headers,
            encodingCompletion: { (encodingResult) in
             

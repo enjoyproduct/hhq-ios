@@ -63,3 +63,11 @@ func getUpperCaseFirstLetter(input: String) -> String {
 func removeFirstLetter(origin: String) -> String {
     return ""
 }
+func getFileNameFromURL(url: URL) -> String {
+    let name = url.lastPathComponent
+    return name
+}
+func getFileExtension(fileName: String) -> String {
+    let component = fileName.components(separatedBy: ".")
+    return component[component.count - 1]
+}

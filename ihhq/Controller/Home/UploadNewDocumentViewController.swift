@@ -42,6 +42,12 @@ class UploadNewDocumentViewController: UIViewController, UIDocumentMenuDelegate,
         }
         
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.hideKeyboard()
+    }
+    func hideKeyboard() {
+        self.view.endEditing(true)
+    }
     @IBAction func onUploadNow(_ sender: Any) {
         if self.tfFileName.text == "" {
             showAlert("Please input file name", title: Constant.INDECATOR, controller: self)
@@ -95,8 +101,7 @@ class UploadNewDocumentViewController: UIViewController, UIDocumentMenuDelegate,
         ]
         var fileData: Data? = nil
         do {
-            fileData = try Data(contentsOf: self.fileURL!, options: NSData.ReadingOptions())
-            
+            fileData = try Data(contentsOf: self.fileURL!)
         } catch {
             print(error)
         }
@@ -105,8 +110,10 @@ class UploadNewDocumentViewController: UIViewController, UIDocumentMenuDelegate,
             multipartFormData.append((self.tfFileName.text?.data(using: String.Encoding.utf8)!)!, withName: "name")
             multipartFormData.append((self.fileModel?.file_ref.data(using: String.Encoding.utf8)!)!, withName: "file_ref")
             if fileData != nil {
-                multipartFormData.append(fileData!, withName: "file")
+                let fileName = getFileNameFromURL(url: self.fileURL!)
+                multipartFormData.append(fileData!, withName: "file", fileName: fileName, mimeType: "application/*")
             }
+            
             
         }, to: endPoint, headers: headers,
            encodingCompletion: { (encodingResult) in
@@ -121,12 +128,16 @@ class UploadNewDocumentViewController: UIViewController, UIDocumentMenuDelegate,
                         
                         if statusCode == 200 {
                             self.navigationController?.popViewController(animated: true)
+                        } else if statusCode == 422 {
+                            showAlert("Validation Failed", title: "Error", controller: self)
+                        } else if statusCode == 500 {
+                            showAlert("Internal server error", title: "Error", controller: self)
                         } else {
                             showAlert("Failed to upload", title: "Error", controller: self)
                         }
                     } else {
                         print("Error : \(String(describing: response.result.error))")
-                        showAlert(response.result.error as! String, title: "Error", controller: self)
+                        showAlert(String(describing: response.result.error), title: "Error", controller: self)
                     }
                     
                 })
