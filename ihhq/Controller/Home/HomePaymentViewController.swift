@@ -398,9 +398,9 @@ extension HomePaymentViewController : UITableViewDataSource {
             cell.btnViewInvoice.isHidden = false
             cell.btnViewInvoice.isEnabled = true
         } else if payment.status == Constant.arrPaymentStatus[2] {
-            cell.btnViewInvoice.setText(text: "View Receipt")
-            cell.btnViewInvoice.isHidden = true
-            cell.btnViewInvoice.isEnabled = false
+            cell.btnViewInvoice.setText(text: "View Slip")
+            cell.btnViewInvoice.isHidden = false
+            cell.btnViewInvoice.isEnabled = true
         } else {
             cell.btnViewInvoice.setText(text: "View Receipt")
             cell.btnViewInvoice.isHidden = false

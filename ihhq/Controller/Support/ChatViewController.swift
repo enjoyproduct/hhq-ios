@@ -116,8 +116,8 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
                         let fileName = attachment["name"].string
                         //                    let path = attachment["path"].string
                         //                    let size = attachment["size"].string
-                        let fileNameMessage = JSQMessage(senderId: String(describing: sender_id), senderDisplayName: fileName, date: date, text: message_str)
-                        self.messages.append(fileNameMessage!)
+//                        let fileNameMessage = JSQMessage(senderId: String(describing: sender_id), senderDisplayName: fileName, date: date, text: message_str)
+//                        self.messages.append(fileNameMessage!)
                         //
                         var image: UIImage?
                         if (fileName?.contains(".pdf"))! {
@@ -205,7 +205,8 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
             
             multipartFormData.append("".data(using: String.Encoding.utf8)!, withName: "message")
             if attachmentData != nil {
-                multipartFormData.append(attachmentData!, withName: "attachments")
+                let fileName = getFileNameFromURL(url: attachment_url)
+                multipartFormData.append(attachmentData!, withName: "attachments", fileName: fileName, mimeType: "application/*")
             }
         }, to: self.url_post_message, headers: headers,
            encodingCompletion: { (encodingResult) in
