@@ -108,7 +108,10 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
                 let message_str = message_json["text"].string
                 //add text message
                 let textMessage = JSQMessage(senderId: String(describing: sender_id), senderDisplayName: name, date: date, text: message_str)
-                self.messages.append(textMessage!)
+                if (message_str?.characters.count)! > 0 {
+                    self.messages.append(textMessage!)
+                }
+                
                 //add attachment message
                 if let message_attachments = message_json["attachments"].array {
                     
@@ -206,7 +209,7 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
             multipartFormData.append("".data(using: String.Encoding.utf8)!, withName: "message")
             if attachmentData != nil {
                 let fileName = getFileNameFromURL(url: attachment_url)
-                multipartFormData.append(attachmentData!, withName: "attachments", fileName: fileName, mimeType: "application/*")
+                multipartFormData.append(attachmentData!, withName: "attachment", fileName: fileName, mimeType: "application/*")
             }
         }, to: self.url_post_message, headers: headers,
            encodingCompletion: { (encodingResult) in
