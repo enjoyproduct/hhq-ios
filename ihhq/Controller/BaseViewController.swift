@@ -17,19 +17,21 @@ class BaseViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = Constant.colorPrimary
         self.navigationController?.navigationBar.barTintColor = Constant.toolbarColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Constant.colorPrimary]
-        
-        
+
         self.addRightBarButtonWithImage(UIImage(named: "dot3_yellow")!)
         self.slideMenuController()?.removeLeftGestures()
         self.slideMenuController()?.removeRightGestures()
         self.slideMenuController()?.addLeftGestures()
         self.slideMenuController()?.addRightGestures()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
+        
         let backItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
 
     }
+    
     func initTitleLabel(title: String) {
         let label = UILabel(frame: CGRect(x:0, y:0, width:getScreenSize().width, height:50))
         label.backgroundColor = UIColor.clear

@@ -133,7 +133,7 @@ extension HomeUpdateViewController : UITableViewDelegate {
         } else {
             let milestoneModel = updateModel.milestoneModel
             if !(milestoneModel?.remark?.isEmpty)! {
-                showAlert((milestoneModel?.activity)!, title: (milestoneModel?.activity)!, controller: self)
+                showAlert((milestoneModel?.remark)!, title: (milestoneModel?.activity)!, controller: self)
             }
             
         }

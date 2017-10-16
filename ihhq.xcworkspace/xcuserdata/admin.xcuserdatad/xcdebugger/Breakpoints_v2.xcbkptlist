@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ihhq/Controller/Support/ChatViewController.swift"
-            timestampString = "520858746.697522"
+            timestampString = "529854885.169987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "sendMessage(message:)"
             landmarkType = "7">
          </BreakpointContent>

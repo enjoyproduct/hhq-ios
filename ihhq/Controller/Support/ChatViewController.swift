@@ -117,7 +117,7 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
                     
                     for attachment in message_attachments {
                         let fileName = attachment["name"].string
-                        //                    let path = attachment["path"].string
+                        let path = attachment["path"].string
                         //                    let size = attachment["size"].string
 //                        let fileNameMessage = JSQMessage(senderId: String(describing: sender_id), senderDisplayName: fileName, date: date, text: message_str)
 //                        self.messages.append(fileNameMessage!)
@@ -130,8 +130,10 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
                         } else {
                             image = UIImage(named: "message_xlsx")
                         }
+                        let downloadURL = String(format: API.DOWNLOAD_TICKET_FILE, path!, fileName!)
                         let photoItem = JSQPhotoMediaItem(image: image)
-                        let attchMessage = JSQMessage(senderId: String(describing: sender_id), senderDisplayName: name, date: date , media: photoItem)
+                        let attchMessage = JSQMessage(senderId: String(describing: sender_id), senderDisplayName: downloadURL, date: date , media: photoItem)
+                        
                         self.messages.append(attchMessage!)
                     }
                 }
@@ -459,4 +461,111 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
         return kJSQMessagesCollectionViewCellLabelHeightDefault;
     }
 
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let currentMessage = self.messages[indexPath.row]
+        if currentMessage.media != nil {
+            showDownloadAlert(endPoint: currentMessage.senderDisplayName)
+        } else {
+            
+        }
+    }
+    func showDownloadAlert(endPoint: String) {
+        let alertController = UIAlertController(title: Constant.INDECATOR, message: "Do you want to download file?", preferredStyle: UIAlertControllerStyle.alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            // ...
+        }
+        alertController.addAction(cancelAction)
+        
+        let OKAction = UIAlertAction(title: "Download", style: .default) { (action) in
+            self.downloadFile(endPoint: endPoint)
+        }
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true) {
+            
+        }
+    }
+    func downloadFile(endPoint: String)  {
+        
+        let fileName = endPoint.components(separatedBy: "=").last
+        showProgressHUD()
+        APIManager().downloadFile(urlString: endPoint, fileName: fileName!, succeedHandler: { (filePath) in
+            dismissProgressHUD()
+            let localPath = filePath.replacingOccurrences(of: " ", with: "%20")
+            let localURL = URL(string: localPath)
+            //open file
+            self.openFile(url: localURL!)
+            
+        }) { (error) in
+            dismissProgressHUD()
+            print(error)
+            showAlert(error.domain, title: "Error : " + String(error.code), controller: self)
+        }
+        
+    }
+    func showOpenFileAlert(url: URL) {
+        let alertController = UIAlertController(title: Constant.INDECATOR, message: "Do you want to open file?", preferredStyle: UIAlertControllerStyle.alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            // ...
+        }
+        alertController.addAction(cancelAction)
+        let shareAction = UIAlertAction(title: "Share", style: .default) { (action) in
+            self.shareDocument(url: url)
+        }
+        alertController.addAction(shareAction)
+        let OKAction = UIAlertAction(title: "Open", style: .default) { (action) in
+            self.openFile(url: url)
+        }
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true) {
+            
+        }
+    }
+    func openFile(url: URL) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DocumentViewController") as! DocumentViewController
+        vc.url = url
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    func shareDocument(url: URL) {
+        
+        let fileName = url.lastPathComponent
+        
+        let urlString = "file://" + url.absoluteString
+        
+        do {
+            let docData = try Data(contentsOf: URL(string: urlString)!)
+            
+            //  create a folder in Application Support
+            let applicationSupportDirectory = FileManager.SearchPathDirectory.applicationSupportDirectory
+            let nsUserDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+            let paths = NSSearchPathForDirectoriesInDomains( applicationSupportDirectory, nsUserDomainMask, true )
+            let fileManager = FileManager.default
+            
+            let path  = paths[0]
+            
+            //  check if the folder already exists
+            if fileManager.fileExists( atPath: path ) == false
+            {
+                _ = try? fileManager.createDirectory( atPath: path,
+                                                      withIntermediateDirectories: true,
+                                                      attributes: nil )
+            }
+            //  prepare content and write to file
+            var destinationPath = "file://" + path + "/" + fileName
+            destinationPath = destinationPath.replacingOccurrences(of: " ", with: "%20")
+            let destinationURL = URL(string: destinationPath)
+            let _ = try docData.write(to: destinationURL!, options: .atomic)
+            
+            var activityItems: [Any] = []
+            activityItems.append(destinationURL)
+            activityItems.append("HHQ Attachment")
+            let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+            self.present(activityVC, animated: true, completion: nil)
+            
+        } catch {
+            print("Unable to load data: \(error)")
+        }
+        
+        
+    }
 }
