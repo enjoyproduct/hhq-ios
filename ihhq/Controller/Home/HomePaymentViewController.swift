@@ -370,7 +370,8 @@ extension HomePaymentViewController : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if Global.me.role == Constant.arrUserRoles[5] && self.arrPayments[indexPath.row].status == Constant.arrPaymentStatus[0]
+        if Global.me.role == Constant.arrUserRoles[5]
+            && self.arrPayments[indexPath.row].status == Constant.arrPaymentStatus[0]
             && self.fileModel?.assigned_role != Constant.arrUserRoles[6] {
             self.selectedIndex = indexPath.row
             self.selectManualOrOnline()

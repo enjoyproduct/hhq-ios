@@ -27,6 +27,8 @@ class ChangePasswordViewController: UIViewController {
         
         self.btnUpdatePassword.layer.cornerRadius = Constant.cornerRadius5;
         self.btnUpdatePassword.layer.masksToBounds = true;
+        
+        self.title = "CHANGE PASSWORD"
 
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -69,11 +71,9 @@ class ChangePasswordViewController: UIViewController {
             if let response = result["result"].string {
                 showAlert(response, title: "Error", controller: self)
             } else {
-                showAlert("Password updated successfully", title: "Error", controller: self)
+                self.showSuccessAlert("Password updated successfully", title: "Success", controller: self)
                 Global.me.password = self.tfNewPassword.text!
                 setObjectToUserDefault(Constant.PASSWORD, object: Global.me.password as AnyObject)
-                //
-                self.navigationController?.popViewController(animated: true)
                 
             }
             
@@ -82,6 +82,24 @@ class ChangePasswordViewController: UIViewController {
             print(error)
             showAlert(error.domain, title: "Error : " + String(error.code), controller: self)
         })
+        
+    }
+    func showSuccessAlert(_ message: String, title: String, controller:UIViewController) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        //    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+        //        // ...
+        //    }
+        //    alertController.addAction(cancelAction)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            // ...
+            self.navigationController?.popViewController(animated: true)
+        }
+        alertController.addAction(OKAction)
+        
+        controller.present(alertController, animated: true) {
+            
+        }
         
     }
 
