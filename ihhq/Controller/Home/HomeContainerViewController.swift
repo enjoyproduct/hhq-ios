@@ -122,7 +122,7 @@ class HomeContainerViewController: UIViewController, CarbonTabSwipeNavigationDel
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "NewSupportRequestViewController") as! NewSupportRequestViewController
         vc.selectedFileRef = (self.fileModel?.file_ref)!
-        vc.selectedDepartmentID = (self.fileModel?.category_id)!
+        vc.selectedDepartmentID = (self.fileModel?.department_id)!
         self.navigationController?.pushViewController(vc, animated: true)
     }
     override func didReceiveMemoryWarning() {

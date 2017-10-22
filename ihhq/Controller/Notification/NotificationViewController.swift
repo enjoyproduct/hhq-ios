@@ -76,7 +76,7 @@ class NotificationViewController: BaseViewController {
 }
 extension NotificationViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 110
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -100,6 +100,7 @@ extension NotificationViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationTableViewCell") as! NotificationTableViewCell
         let notification = self.arrNotifications[indexPath.row]
         cell.lblCase.text = notification.subject
+        cell.lblFileRef.text = notification.file_ref
         cell.lblMessage.text = notification.message
         cell.lblTime.text = timeFormatter(strTime: notification.created_at)
         return cell

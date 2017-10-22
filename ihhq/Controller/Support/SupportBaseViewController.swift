@@ -233,7 +233,7 @@ extension SupportBaseViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Support2TableViewCell") as! Support2TableViewCell
         let correspondence = self.arrCorrespondences[indexPath.row]
-        cell.lblName.text = correspondence.client_name + "(" + correspondence.category + ")"
+        cell.lblName.text = correspondence.client_name + " (" + correspondence.category + ")"
         cell.lblSubject.text = correspondence.subject
         cell.lblTime.text = timeFormatter(strTime: correspondence.created_at)
         cell.lblRef.text = "Ref No: " + correspondence.file_ref!

@@ -211,7 +211,7 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
             multipartFormData.append("".data(using: String.Encoding.utf8)!, withName: "message")
             if attachmentData != nil {
                 let fileName = getFileNameFromURL(url: attachment_url)
-                multipartFormData.append(attachmentData!, withName: "attachment", fileName: fileName, mimeType: "application/*")
+                multipartFormData.append(attachmentData!, withName: "attachments", fileName: fileName, mimeType: "application/*")
             }
         }, to: self.url_post_message, headers: headers,
            encodingCompletion: { (encodingResult) in
@@ -416,7 +416,7 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
         return NSAttributedString(string: message.senderDisplayName)
     }
     
-   
+   //show date once per 3 messages
     override func collectionView(_ collectionView: JSQMessagesCollectionView, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout, heightForCellTopLabelAt indexPath: IndexPath) -> CGFloat {
         /**
          *  Each label in a cell has a `height` delegate method that corresponds to its text dataSource method
@@ -434,7 +434,7 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
         
         return 0.0
     }
-    
+    //show/hide user name label
     override func collectionView(_ collectionView: JSQMessagesCollectionView, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout, heightForMessageBubbleTopLabelAt indexPath: IndexPath) -> CGFloat {
         
         /**
@@ -450,7 +450,9 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
         if currentMessage.senderId == self.getSenderId() {
             return 0.0
         }
-        
+        if currentMessage.media != nil {
+            return 0.0
+        }
         if indexPath.item - 1 > 0 {
             let previousMessage = self.messages[indexPath.item - 1]
             if previousMessage.senderId == currentMessage.senderId {
@@ -460,8 +462,9 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
         
         return kJSQMessagesCollectionViewCellLabelHeightDefault;
     }
-
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    //select message
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
         let currentMessage = self.messages[indexPath.row]
         if currentMessage.media != nil {
             showDownloadAlert(endPoint: currentMessage.senderDisplayName)
@@ -469,6 +472,7 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
             
         }
     }
+    
     func showDownloadAlert(endPoint: String) {
         let alertController = UIAlertController(title: Constant.INDECATOR, message: "Do you want to download file?", preferredStyle: UIAlertControllerStyle.alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
@@ -494,7 +498,7 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
             let localPath = filePath.replacingOccurrences(of: " ", with: "%20")
             let localURL = URL(string: localPath)
             //open file
-            self.openFile(url: localURL!)
+            self.showOpenFileAlert(url: localURL!)
             
         }) { (error) in
             dismissProgressHUD()

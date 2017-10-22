@@ -11,6 +11,7 @@ import UIKit
 class NotificationTableViewCell: UITableViewCell {
 
     @IBOutlet weak var lblCase: UILabel!
+    @IBOutlet weak var lblFileRef: UILabel!
     @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     override func awakeFromNib() {

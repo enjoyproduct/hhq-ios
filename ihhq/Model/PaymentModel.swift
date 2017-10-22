@@ -18,6 +18,9 @@ class PaymentModel: NSObject {
     var remarks: String?
     var status: String?
     var date = ""
+    var invoiceFilePath = ""
+    var receiptFilePath = ""
+    
     override init() {
         
     }
@@ -32,6 +35,16 @@ class PaymentModel: NSObject {
         self.remarks = json["remarks"].string
         self.date = json["created_at"].string!
         self.status = json["status_detail"].string
+        if let invoice = json["invoice"].string {
+            self.invoiceFilePath = invoice
+        } else {
+            
+        }
+        if let receipt = json["receipt"].string {
+            self.receiptFilePath = receipt
+        } else {
+            
+        }
         
     }
 

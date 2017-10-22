@@ -84,7 +84,7 @@ extension HomeSupportViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SupportTableViewCell") as! SupportTableViewCell
         
         let correspondence = self.arrCorrespondences[indexPath.row]
-        cell.lblName.text = correspondence.client_name + "(" + correspondence.category + ")"
+        cell.lblName.text = correspondence.client_name + " (" + correspondence.category + ")"
         cell.lblDescription.text = correspondence.subject
         cell.lblTime.text = timeFormatter(strTime: correspondence.created_at)
         let imageURL = API.BASE_IMAGE_URL + correspondence.client_photo

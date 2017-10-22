@@ -18,6 +18,13 @@ class DocumentViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         if self.url != nil {
+//            do {
+//                let data = try Data(contentsOf: self.url!)
+//                webView.load(data, mimeType: "application/pdf", textEncodingName: "utf-8", baseURL: self.url!)
+//            } catch {
+//                
+//            }
+            
             webView.loadRequest(URLRequest(url: url!))
         }
         

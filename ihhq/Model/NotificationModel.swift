@@ -13,6 +13,7 @@ class NotificationModel: NSObject {
     var id_send = 0
     var subject = ""
     var message = ""
+    var file_ref = ""
     var created_at = ""
     override init() {
         
@@ -24,6 +25,11 @@ class NotificationModel: NSObject {
         self.subject = json["subject"].string!
         self.message = json["message"].string!
         self.created_at = json["created_at"].string!
+        if let fileRef = json["file_ref"].string {
+            if fileRef != "null" {
+                self.file_ref = fileRef
+            }
+        }
         
     }
     

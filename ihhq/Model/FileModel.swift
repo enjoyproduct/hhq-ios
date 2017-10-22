@@ -19,6 +19,7 @@ struct CaseModel {
 }
 class FileModel: NSObject {
     var file_id = 0
+    var department_id = 0
     var category_id = 0
     var sub_category_id = 0
     var type_id = 0
@@ -51,6 +52,7 @@ class FileModel: NSObject {
    
     init(json: JSON) {
         self.file_id = json["file_id"].int!
+        self.department_id = json["department_id"].int!
         self.category_id = json["category_id"].int!
         self.sub_category_id = json["sub_category_id"].int!
 //        self.type_id = json["type_id"].int!
