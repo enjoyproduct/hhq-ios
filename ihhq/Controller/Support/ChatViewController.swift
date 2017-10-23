@@ -149,6 +149,7 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
         
     }
     func sendMessage(message: String) {
+        showProgressHUD()
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + Global.me.token
         ]
@@ -194,14 +195,13 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
         })
     }
     func sendAttachment(attachment_url: URL) {
+        showProgressHUD()
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + Global.me.token
         ]
         var attachmentData: Data? = nil
         do {
             attachmentData = try Data(contentsOf: attachment_url)
-            // do something with data
-            // if the call fails, the catch block is executed
         } catch {
             print(error.localizedDescription)
         }
