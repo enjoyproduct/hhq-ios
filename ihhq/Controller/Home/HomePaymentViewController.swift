@@ -16,8 +16,7 @@ class HomePaymentViewController: UIViewController, UIDocumentMenuDelegate, UIDoc
     var fileModel: FileModel? = nil
     var arrPayments = [PaymentModel]()
     var url = ""
-    var billplzEmail = ""
-    var selectedPaymentType = -1 //0:bank, 1: billplz
+    
     var selectedIndex = -1
     var isBillCreated = false
     let imagePicker = UIImagePickerController()
@@ -51,15 +50,15 @@ class HomePaymentViewController: UIViewController, UIDocumentMenuDelegate, UIDoc
         
         let btnManual = UIAlertAction(title: Constant.arrPaymentMethod[0], style: .default)
         { _ in
-            self.selectedPaymentType = 0
+            
             self.pickReceiptImage()
         }
         actionSheetControllerIOS8.addAction(btnManual)
         
         let btnBillplz = UIAlertAction(title: Constant.arrPaymentMethod[1], style: .default)
         { _ in
-            self.selectedPaymentType = 1
-            self.selectMethod()
+            
+            self.createBill()
         }
         actionSheetControllerIOS8.addAction(btnBillplz)
         
@@ -181,90 +180,17 @@ class HomePaymentViewController: UIViewController, UIDocumentMenuDelegate, UIDoc
         })
     }
 
-    func selectMethod() {
-        //Create the AlertController and add Its action like button in Actionsheet
-        let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Please select", message: "billing method", preferredStyle: .actionSheet)
-        
-        let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            print("Cancel")
-        }
-        actionSheetControllerIOS8.addAction(cancelActionButton)
-        
-        let btnBank = UIAlertAction(title: Constant.arrBillplzMethod[0], style: .default)
-        { _ in
-            self.pickReceiptImage()
-        }
-        actionSheetControllerIOS8.addAction(btnBank)
-        
-        let btnBillplz = UIAlertAction(title: Constant.arrBillplzMethod[1], style: .default)
-        { _ in
-            self.inputBillplzEmail()
-        }
-        actionSheetControllerIOS8.addAction(btnBillplz)
-        
-        self.present(actionSheetControllerIOS8, animated: true, completion: nil)
-    }
+    
 
-    func inputBillplzEmail() {
-        //1. Create the alert controller.
-        let alert = UIAlertController(title: "Please insert email", message: "", preferredStyle: .alert)
-        //2. Add the text field. You can configure it however you need.
-        alert.addTextField { (textField) in
-            textField.placeholder = "Email"
-        }
-        // 3. Grab the value from the text field, add action
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default , handler: nil))
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            if textField?.text?.characters.count == 0 {
-                showAlert("Please fill email", title: "Error", controller: self)
-            } else if !isValidEmail((textField?.text!)!) {
-                showAlert("Invalid Email", title: "Warning", controller: self)
-                
-            } else {
-                self.billplzEmail = (textField?.text)!
-                self.createBill(method: 1)
-            }
-            
-        }))
-        // 4. Present the alert.
-        self.present(alert, animated: true, completion: nil)
-    }
-
-    func createBill(method: Int) {
+    func createBill() {
         showProgressHUD()
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + Global.me.token
         ]
-        if method == 0 {
-            if self.receiptImage == nil && self.fileURL == nil {
-                showAlert("Please select attachment", title: "HHQ", controller: self)
-                return
-            }
-        }
+        
         upload(multipartFormData: { (multipartFormData) in
             multipartFormData.append(String(self.arrPayments[self.selectedIndex].payment_id).data(using: String.Encoding.utf8)!, withName: "payment_id")
-            multipartFormData.append(Constant.arrBillplzMethod[method].data(using: String.Encoding.utf8)!, withName: "method")
-            multipartFormData.append(self.arrPayments[self.selectedIndex].amount.data(using: String.Encoding.utf8)!, withName: "amount")
-            multipartFormData.append(self.billplzEmail.data(using: String.Encoding.utf8)!, withName: "email_billpls")
-            multipartFormData.append("http://hhqtouch.com.my".data(using: String.Encoding.utf8)!, withName: "return_url")
-            if self.fileURL != nil {
-                do {
-                    let attachmentData = try Data(contentsOf: self.fileURL!)
-                    let fileName = getFileNameFromURL(url: self.fileURL!)
-                    multipartFormData.append(attachmentData, withName: "receipt", fileName: fileName, mimeType: "application/*")
-                    
-                    // do something with data
-                    // if the call fails, the catch block is executed
-                } catch {
-                    print(error.localizedDescription)
-                }
-
-            } else if self.receiptImage != nil {
-                let imageData = UIImageJPEGRepresentation(self.receiptImage!, 0.6)
-                multipartFormData.append(imageData!, withName: "receipt", fileName: "receipt.png", mimeType: "image/png")
-            }
-            
+           
         }, to: API.CREATE_BILL, headers: headers,
            encodingCompletion: { (encodingResult) in
             
@@ -281,14 +207,8 @@ class HomePaymentViewController: UIViewController, UIDocumentMenuDelegate, UIDoc
                                 if let status = jsonResponse["status"].string {
                                     if status == "success" {
                                         self.isBillCreated = true
-                                        if method == 0 {//in case of bank
-                                            if self.isBillCreated {
-                                                self.checkBilling()
-                                            }
-                                        } else if method == 1 {//in case of billplz
-                                            let url = jsonResponse["url"].string
-                                            self.launchBrowser(billingURL: url!)
-                                        }
+                                        let url = jsonResponse["url"].string
+                                        self.launchBrowser(billingURL: url!)
                                         
                                     } else {
                                         
@@ -495,11 +415,7 @@ extension HomePaymentViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let choosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.receiptImage = choosenImage
-        if self.selectedPaymentType == 0 {
-            self.doUploadReceipt()
-        } else {
-            self.createBill(method: 0)
-        }
+        self.doUploadReceipt()
         
         self.dismiss(animated: true, completion: nil)
     }
