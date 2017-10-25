@@ -311,17 +311,17 @@ extension HomePaymentViewController : HomePaymentTableViewCellDelegate {
         let payment = self.arrPayments[index]
         var fileURL = ""
         var fileName = ""
-        if !payment.receiptFilePath.isEmpty {
+        if !payment.officalReceiptFilePath.isEmpty {
+            fileURL = String(format: API.DOWNLOAD_OFFICIAL_RECEIPT, self.arrPayments[index].payment_id)
+            fileName = payment.officalReceiptFilePath.components(separatedBy: "/").last!
+        } else if !payment.receiptFilePath.isEmpty && payment.status != Constant.arrPaymentStatus[0] {
+            fileURL = String(format: API.DOWNLOAD_RECEIPT, self.arrPayments[index].payment_id)
             fileName = payment.receiptFilePath.components(separatedBy: "/").last!
-        } else if !payment.invoiceFilePath.isEmpty {
+        } else if !payment.invoiceFilePath.isEmpty{
+            fileURL = String(format: API.DOWNLOAD_INVOICE, self.arrPayments[index].payment_id)
             fileName = payment.invoiceFilePath.components(separatedBy: "/").last!
         } else {
-            fileName = payment.file_ref + "--" + String(self.arrPayments[index].payment_id) + ".pdf"
-        }
-        if !payment.receiptFilePath.isEmpty && payment.status != Constant.arrPaymentStatus[0] {
-            fileURL = String(format: API.DOWNLOAD_RECEIPT, self.arrPayments[index].payment_id)
-        } else {
-            fileURL = String(format: API.DOWNLOAD_INVOICE, self.arrPayments[index].payment_id)
+            return
         }
         
         showProgressHUD()

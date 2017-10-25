@@ -9,7 +9,7 @@
 import UIKit
 import JSQMessagesViewController
 import MobileCoreServices
-class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UINavigationControllerDelegate {
+class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     var messages = [JSQMessage]()
     
@@ -26,6 +26,7 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
         self.senderId = self.getSenderId()
         self.senderDisplayName = self.getSenderDisplayName()
         //set title
@@ -51,7 +52,9 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
         
         self.collectionView?.reloadData()
         self.collectionView?.layoutIfNeeded()
+        ///
         self.getTicketMessages()
+        
     }
     func setTitle(title: String) {
         let label = UILabel(frame: CGRect(x:40, y:0, width:getScreenSize().width - 40, height:50))
@@ -72,7 +75,7 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
     func backButtonTapped() {
         dismiss(animated: true, completion: nil)
     }
-   
+    
     func getTicketMessages()  {
         if self.url_get_message == "" {
             return

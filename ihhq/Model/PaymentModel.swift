@@ -20,7 +20,7 @@ class PaymentModel: NSObject {
     var date = ""
     var invoiceFilePath = ""
     var receiptFilePath = ""
-    
+    var officalReceiptFilePath = ""
     override init() {
         
     }
@@ -42,6 +42,11 @@ class PaymentModel: NSObject {
         }
         if let receipt = json["receipt"].string {
             self.receiptFilePath = receipt
+        } else {
+            
+        }
+        if let officalReceipt = json["receipt_office"].string {
+            self.officalReceiptFilePath = officalReceipt
         } else {
             
         }

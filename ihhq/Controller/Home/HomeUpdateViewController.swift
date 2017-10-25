@@ -127,14 +127,10 @@ extension HomeUpdateViewController : UITableViewDelegate {
         let updateModel = updates[indexPath.row]
         if (updateModel.type == "dispatche") {
             let logisticModel = updateModel.logisticModel
-            if !(logisticModel?.desc.isEmpty)! {
-                showAlert((logisticModel?.desc)!, title: (logisticModel?.file_ref)!, controller: self)
-            }
+            showAlert((logisticModel?.desc)!, title: (logisticModel?.file_ref)!, controller: self)
         } else {
             let milestoneModel = updateModel.milestoneModel
-            if !(milestoneModel?.remark?.isEmpty)! {
-                showAlert((milestoneModel?.remark)!, title: (milestoneModel?.activity)!, controller: self)
-            }
+            showAlert((milestoneModel?.remark)!, title: (milestoneModel?.activity)!, controller: self)
             
         }
         
