@@ -29,7 +29,11 @@ class CorrespondenceModel: NSObject {
         self.ticket_id = json["ticket_id"].int!
         self.file_ref = json["file_ref"].string
         self.subject = json["subject"].string!
-        self.category = json["category"].string!
+        if let cat = json["category"].string {
+            self.category = cat
+        } else {
+            
+        }
         self.created_at = json["created_at"].string!
         if let client = json["client"].dictionary {
             self.client_name = (client["name"]?.string!)!

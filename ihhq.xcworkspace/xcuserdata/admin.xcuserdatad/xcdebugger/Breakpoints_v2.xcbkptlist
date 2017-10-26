@@ -355,22 +355,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ihhq/Controller/Support/ChatViewController.swift"
-            timestampString = "530634640.34966"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
-            landmarkName = "sendAttachment(attachment_url:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "ihhq/Controller/Home/HomePaymentViewController.swift"
             timestampString = "530533586.68464"
             startingColumnNumber = "9223372036854775807"
@@ -419,13 +403,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ihhq/Controller/Support/ChatViewController.swift"
-            timestampString = "530639833.927518"
+            filePath = "ihhq/Controller/Home/HomePaymentViewController.swift"
+            timestampString = "530682303.353074"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "498"
-            endingLineNumber = "498"
-            landmarkName = "downloadFile(endPoint:)"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
+            landmarkName = "downloadFile(index:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -436,11 +420,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ihhq/Controller/Support/ChatViewController.swift"
-            timestampString = "530639849.493923"
+            timestampString = "530723719.133712"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "508"
-            endingLineNumber = "508"
+            startingLineNumber = "513"
+            endingLineNumber = "513"
             landmarkName = "downloadFile(endPoint:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -121,18 +121,24 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
                     for attachment in message_attachments {
                         let fileName = attachment["name"].string
                         let path = attachment["path"].string
-                        //                    let size = attachment["size"].string
+    //                    let size = attachment["size"].string
 //                        let fileNameMessage = JSQMessage(senderId: String(describing: sender_id), senderDisplayName: fileName, date: date, text: message_str)
 //                        self.messages.append(fileNameMessage!)
                         //
                         var image: UIImage?
+                        
                         if (fileName?.contains(".pdf"))! {
                             image = UIImage(named: "message_pdf")
-                        } else if (fileName?.contains(".doc"))! {
+                        } else if ((fileName?.contains(".doc"))! || (fileName?.contains(".word"))!) {
                             image = UIImage(named: "message_doc")
-                        } else {
+                        } else if (fileName?.contains(".xls"))! {
                             image = UIImage(named: "message_xlsx")
+                        } else if ((fileName?.contains(".png"))! || (fileName?.contains(".jpg"))! || (fileName?.contains(".jpeg"))!){
+                            image = UIImage(named: "picture")
+                        } else {
+                            image = UIImage(named: "message_pdf")
                         }
+
                         let downloadURL = String(format: API.DOWNLOAD_TICKET_FILE, path!, fileName!)
                         let photoItem = JSQPhotoMediaItem(image: image)
                         let attchMessage = JSQMessage(senderId: String(describing: sender_id), senderDisplayName: downloadURL, date: date , media: photoItem)
@@ -169,21 +175,17 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
                     debugPrint(response)
                     if let statusCode = response.response?.statusCode {
                         print("HTTP response status code is", statusCode);
-                        
                         if statusCode == 200 {
                             
                         } else {
-                            
                             if let value = response.result.value {
                                 let dic = JSON(value)
-                                
                                 let errStr = dic["error"].string
                                 showAlert(errStr!, title: "Error", controller: self)
                             }
                         }
                     } else {
                         print("Error : \(String(describing: response.result.error))")
-//                        showAlert(response.result.error as! String, title: "Error", controller: self)
                     }
                     
                 })
@@ -197,6 +199,7 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
             }
         })
     }
+    
     func sendAttachment(attachment_url: URL) {
         showProgressHUD()
         let headers: HTTPHeaders = [
@@ -208,9 +211,7 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
         } catch {
             print(error.localizedDescription)
         }
-        
         upload(multipartFormData: { (multipartFormData) in
-            
             multipartFormData.append("".data(using: String.Encoding.utf8)!, withName: "message")
             if attachmentData != nil {
                 let fileName = getFileNameFromURL(url: attachment_url)
@@ -225,22 +226,39 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
                     debugPrint(response)
                     if let statusCode = response.response?.statusCode {
                         print("HTTP response status code is", statusCode);
-                        
                         if statusCode == 200 {
-                           
+                            if let value = response.result.value {
+                                let dic = JSON(parseJSON: value)
+                                let message = dic["message"].string
+                                let messageJSON = JSON.parse(message!)
+                                if messageJSON["attachments"].array != nil {
+                                    let attachments = messageJSON["attachments"].array
+                                    if (attachments?.count)! > 0 {
+                                        let name = attachments?[0]["name"].string
+                                        let path = attachments?[0]["path"].string
+                                        let downloadURL = String(format: API.DOWNLOAD_TICKET_FILE, path!, name!)
+                                        let lastMessage = self.messages.last
+                                        let newMessage = JSQMessage(senderId: self.getSenderId(), senderDisplayName: downloadURL, date: Date() , media: lastMessage?.media)
+                                        self.messages.removeLast()
+                                        self.messages.append(newMessage!)
+                                        self.finishSendingMessage(animated: true)
+                                    }
+                                }
+                            }
+
                         } else {
                             if let value = response.result.value {
                                 let dic = JSON(value)
-                                
                                 let errStr = dic["error"].string
                                 showAlert(errStr!, title: "Error", controller: self)
+                                self.messages.removeLast()
+                                self.finishSendingMessage(animated: true)
                             }
                         }
                     } else {
                         print("Error : \(String(describing: response.result.error))")
                         showAlert(response.result.error as! String, title: "Error", controller: self)
                     }
-                    
                 })
                 upload.responseString(completionHandler: { (response) in
                     debugPrint(response)
@@ -248,7 +266,6 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
             case .failure(let encodingError):
                 print("Encoding Result was FAILURE")
                 print(encodingError)
-                
             }
         })
 
@@ -262,18 +279,21 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
             let path = url.path
             var image: UIImage?
             if (path.contains(".pdf")) {
-                image = UIImage(named: "pdf")
-            } else if (path.contains(".doc")) {
-                image = UIImage(named: "doc")
+                image = UIImage(named: "message_pdf")
+            } else if (path.contains(".doc") || path.contains(".word")) {
+                image = UIImage(named: "message_doc")
+            } else if (path.contains(".xls")) {
+                image = UIImage(named: "message_xlsx")
+            } else if (path.contains(".png") || path.contains(".jpg") || path.contains(".jpeg")){
+                image = UIImage(named: "picture")
             } else {
-                image = UIImage(named: "excel")
+                image = UIImage(named: "pdf")
             }
             let photoItem = JSQPhotoMediaItem(image: image)
             let attchMessage = JSQMessage(senderId: getSenderId(), senderDisplayName: getSenderDisplayName(), date: Date() , media: photoItem)
             self.messages.append(attchMessage!)
             self.finishSendingMessage(animated: true)
-            //optional, case PDF -> render
-            //displayPDFweb.loadRequest(NSURLRequest(url: cico) as URLRequest)
+            
         }
         
     }
@@ -470,28 +490,13 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
         let currentMessage = self.messages[indexPath.row]
         if currentMessage.media != nil {
-            showDownloadAlert(endPoint: currentMessage.senderDisplayName)
+            self.downloadFile(endPoint: currentMessage.senderDisplayName)
         } else {
             
         }
     }
     
-    func showDownloadAlert(endPoint: String) {
-        let alertController = UIAlertController(title: Constant.INDECATOR, message: "Do you want to download file?", preferredStyle: UIAlertControllerStyle.alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-            // ...
-        }
-        alertController.addAction(cancelAction)
-        
-        let OKAction = UIAlertAction(title: "Download", style: .default) { (action) in
-            self.downloadFile(endPoint: endPoint)
-        }
-        alertController.addAction(OKAction)
-        
-        self.present(alertController, animated: true) {
-            
-        }
-    }
+    
     func downloadFile(endPoint: String)  {
         
         let fileName = endPoint.components(separatedBy: "=").last

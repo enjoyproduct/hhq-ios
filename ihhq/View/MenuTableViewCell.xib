@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -36,19 +36,19 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XE0-Mk-BVB">
-                        <rect key="frame" x="79" y="12" width="184" height="20"/>
+                        <rect key="frame" x="79" y="12" width="208" height="20"/>
                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vBx-0L-ubi">
-                        <rect key="frame" x="271" y="7" width="29" height="29"/>
+                        <rect key="frame" x="287" y="9" width="25" height="25"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle_yellow.png" translatesAutoresizingMaskIntoConstraints="NO" id="15O-IV-pVR">
-                                <rect key="frame" x="0.0" y="0.0" width="29" height="29"/>
+                                <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLP-PO-ClV">
-                                <rect key="frame" x="11.5" y="7.5" width="7" height="14.5"/>
+                                <rect key="frame" x="9.5" y="6" width="7" height="14"/>
                                 <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -63,18 +63,18 @@
                             <constraint firstItem="15O-IV-pVR" firstAttribute="centerX" secondItem="vBx-0L-ubi" secondAttribute="centerX" id="mie-d7-CcH"/>
                             <constraint firstItem="15O-IV-pVR" firstAttribute="height" secondItem="vBx-0L-ubi" secondAttribute="height" id="ngc-Ok-xxw"/>
                             <constraint firstItem="VLP-PO-ClV" firstAttribute="centerY" secondItem="vBx-0L-ubi" secondAttribute="centerY" id="qH0-92-YsJ"/>
-                            <constraint firstAttribute="width" constant="29" id="wf7-I4-qi2"/>
+                            <constraint firstAttribute="width" constant="25" id="wf7-I4-qi2"/>
                         </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="XE0-Mk-BVB" firstAttribute="leading" secondItem="JXh-Kc-cFg" secondAttribute="trailing" constant="27" id="00O-aC-Q3s"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="vBx-0L-ubi" secondAttribute="trailing" constant="12" id="Dop-wh-uMo"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="vBx-0L-ubi" secondAttribute="trailing" id="Dop-wh-uMo"/>
                     <constraint firstItem="JXh-Kc-cFg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="JgC-iy-HQZ"/>
                     <constraint firstItem="vBx-0L-ubi" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VFp-aA-7Hq"/>
                     <constraint firstItem="XE0-Mk-BVB" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dKK-0g-FIe"/>
-                    <constraint firstItem="vBx-0L-ubi" firstAttribute="leading" secondItem="XE0-Mk-BVB" secondAttribute="trailing" constant="8" id="dQi-hd-GBq"/>
+                    <constraint firstItem="vBx-0L-ubi" firstAttribute="leading" secondItem="XE0-Mk-BVB" secondAttribute="trailing" id="dQi-hd-GBq"/>
                     <constraint firstItem="JXh-Kc-cFg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="24" id="koH-nv-Kpz"/>
                 </constraints>
             </tableViewCellContentView>

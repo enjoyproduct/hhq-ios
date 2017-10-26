@@ -45,6 +45,7 @@
 		841D79311F0C95EA0085C502 /* RobotoCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 841D79211F0C95EA0085C502 /* RobotoCondensed-LightItalic.ttf */; };
 		841D79321F0C95EA0085C502 /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 841D79221F0C95EA0085C502 /* RobotoCondensed-Regular.ttf */; };
 		841D79341F0CA2770085C502 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D79331F0CA2770085C502 /* UIFont.swift */; };
+		842E11B71FA21561009D5794 /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = 842E11B61FA21561009D5794 /* picture.png */; };
 		844A0ABB1F6A3CE50032B2AF /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A0ABA1F6A3CE50032B2AF /* Double.swift */; };
 		8457F5AA1EFC0F300019F8D1 /* BFPaperCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 8457F5A91EFC0F300019F8D1 /* BFPaperCheckbox.m */; };
 		846033D21F84F4070012E9BA /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846033D11F84F4070012E9BA /* String.swift */; };
@@ -244,6 +245,7 @@
 		841D79211F0C95EA0085C502 /* RobotoCondensed-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
 		841D79221F0C95EA0085C502 /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
 		841D79331F0CA2770085C502 /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		842E11B61FA21561009D5794 /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture.png; sourceTree = "<group>"; };
 		844A0ABA1F6A3CE50032B2AF /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		8457F5A81EFC0F300019F8D1 /* BFPaperCheckbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPaperCheckbox.h; sourceTree = "<group>"; };
 		8457F5A91EFC0F300019F8D1 /* BFPaperCheckbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFPaperCheckbox.m; sourceTree = "<group>"; };
@@ -576,6 +578,7 @@
 		84AA4CF91EED8D6900730BDD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				842E11B61FA21561009D5794 /* picture.png */,
 				84BFC8631F2096F800911BCB /* blog2.png */,
 				84BFC8641F2096F800911BCB /* blog3.png */,
 				84BFC8651F2096F800911BCB /* blog4.png */,
@@ -1036,6 +1039,7 @@
 				84B83E041EF2BF8700AC8EF6 /* blog1.png in Resources */,
 				841D792A1F0C95EA0085C502 /* Roboto-MediumItalic.ttf in Resources */,
 				84AA4D351EED8D6900730BDD /* ic_description.png in Resources */,
+				842E11B71FA21561009D5794 /* picture.png in Resources */,
 				84AA4D801EED8E5600730BDD /* LICENSE in Resources */,
 				84AA4D6D1EED8E5600730BDD /* LICENSE in Resources */,
 				84CC46201EF8BD1B0026E74F /* NotificationTableViewCell.xib in Resources */,

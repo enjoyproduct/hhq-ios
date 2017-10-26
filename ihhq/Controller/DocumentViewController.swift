@@ -17,6 +17,7 @@ class DocumentViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.webView.scalesPageToFit = true
         if self.url != nil {
 //            do {
 //                let data = try Data(contentsOf: self.url!)

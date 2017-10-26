@@ -12,7 +12,7 @@ class MenuViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var images = ["menu_home", "menu_notification", "menu_empower", "menu_support", "menu_scan_qr_code", "menu_setting", "menu_sign_out"]
-    var titles = ["Home", "Notifications", "Empower", "Correspondence","Scan QR Code", "Settings", "Logout"]
+    var titles = ["Home", "Notifications", "Empower", "My Correspondence","Scan QR Code", "Settings", "Logout"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
