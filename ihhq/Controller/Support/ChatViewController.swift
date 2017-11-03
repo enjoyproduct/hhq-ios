@@ -516,7 +516,7 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
         
     }
     func showOpenFileAlert(url: URL) {
-        let alertController = UIAlertController(title: Constant.INDECATOR, message: "Do you want to open file?", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: Constant.INDECATOR, message: "", preferredStyle: UIAlertControllerStyle.alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             // ...
         }
@@ -525,7 +525,7 @@ class ChatViewController: JSQMessagesViewController, UIDocumentMenuDelegate, UID
             self.shareDocument(url: url)
         }
         alertController.addAction(shareAction)
-        let OKAction = UIAlertAction(title: "Open", style: .default) { (action) in
+        let OKAction = UIAlertAction(title: "Open to View", style: .default) { (action) in
             self.openFile(url: url)
         }
         alertController.addAction(OKAction)
